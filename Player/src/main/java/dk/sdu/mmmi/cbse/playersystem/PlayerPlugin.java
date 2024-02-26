@@ -13,7 +13,6 @@ public class PlayerPlugin implements IGamePluginService {
 
     @Override
     public void start(GameData gameData, World world) {
-
         // Add entities to the world
         player = createPlayerShip(gameData);
         world.addEntity(player);
@@ -22,7 +21,11 @@ public class PlayerPlugin implements IGamePluginService {
     private Entity createPlayerShip(GameData gameData) {
 
         Entity playerShip = new Player();
-        playerShip.setPolygonCoordinates(-5,-5,10,0,-5,5);
+        playerShip.setPolygonCoordinates(
+                -5,0,
+                1,0,
+                -10,5,
+                -10,-5);
         playerShip.setX(gameData.getDisplayHeight()/2);
         playerShip.setY(gameData.getDisplayWidth()/2);
         return playerShip;
