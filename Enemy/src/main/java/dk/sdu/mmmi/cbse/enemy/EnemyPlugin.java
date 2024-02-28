@@ -21,15 +21,9 @@ public class EnemyPlugin implements IGamePluginService {
     private Entity createEnemy(GameData gameData){
         Entity enemyShip = new Enemy();
         enemyShip.setPolygonCoordinates(
-                0,0,
-                0,5,
-                5,10,
-                10,10,
-                15,5,
-                15,0,
-                10,-5,
-                5,-5,
-                0,0
+               0,0,
+               0,50,
+               25,25
         );
         enemyShip.setX(gameData.getDisplayHeight()/2);
         enemyShip.setY(gameData.getDisplayWidth()/2);
@@ -41,3 +35,13 @@ public class EnemyPlugin implements IGamePluginService {
         world.removeEntity(enemy);
     }
 }
+
+        /*0,0,
+        0,5,
+        5,10,
+        10,10,
+        15,5,
+        15,0,
+        10,-5,
+        5,-5,
+        0,0*/

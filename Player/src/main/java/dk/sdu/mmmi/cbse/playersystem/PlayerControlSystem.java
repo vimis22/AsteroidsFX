@@ -31,6 +31,12 @@ public class PlayerControlSystem implements IEntityProcessingService {
                 player.setX(player.getX() + changeX);
                 player.setY(player.getY() + changeY);
             }
+            if (gameData.getKeys().isDown(GameKeys.DOWN)) {
+                double changeX = Math.cos(Math.toRadians(player.getRotation()));
+                double changeY = Math.sin(Math.toRadians(player.getRotation()));
+                player.setX(player.getX() + changeX);
+                player.setY(player.getY() + changeY);
+            }
             if (gameData.getKeys().isDown(GameKeys.SPACE)){
                 Collection<? extends BulletSPI> bulletSPIs = getBulletSPIs();
                 for (BulletSPI bulletSPI : bulletSPIs) {
@@ -39,22 +45,17 @@ public class PlayerControlSystem implements IEntityProcessingService {
                 }
             }
 
-            if (player.getX() < 0) {
-                player.setX(1);
+            if (player.getX() <= 0) {
+                player.setX(gameData.getDisplayWidth());
+            }else if (player.getX() >= gameData.getDisplayWidth()) {
+                player.setX(0);
             }
 
-            if (player.getX() > gameData.getDisplayWidth()) {
-                player.setX(gameData.getDisplayWidth()-1);
+            if (player.getY() <= 0) {
+                player.setY(gameData.getDisplayHeight());
+            }else if (player.getY() >= gameData.getDisplayHeight()) {
+                player.setY(0);
             }
-
-            if (player.getY() < 0) {
-                player.setY(1);
-            }
-
-            if (player.getY() > gameData.getDisplayHeight()) {
-                player.setY(gameData.getDisplayHeight()-1);
-            }
-
 
         }
     }
