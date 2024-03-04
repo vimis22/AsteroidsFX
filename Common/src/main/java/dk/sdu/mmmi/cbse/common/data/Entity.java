@@ -11,7 +11,8 @@ public class Entity implements Serializable {
     private double x;
     private double y;
     private double rotation;
-            
+    private double objectiveX;
+    private double objectiveY;
 
     public String getID() {
         return ID.toString();
@@ -51,6 +52,23 @@ public class Entity implements Serializable {
     public double getRotation() {
         return rotation;
     }
-        
+
+    public double getobjectiveX(){
+        return objectiveX;
+    }
+
+    public double getobjectiveY(){
+        return objectiveY;
+    }
+
+    public void setObjectiveX(double objectiveX){
+        this.objectiveX = objectiveX;
+    }
+
+    public void setObjectiveY(double objectiveY){
+        this.objectiveY = objectiveY;
+    }
+
+
 
 }
