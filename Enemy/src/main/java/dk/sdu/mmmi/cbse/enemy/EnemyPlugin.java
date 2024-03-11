@@ -4,6 +4,7 @@ import dk.sdu.mmmi.cbse.common.data.Entity;
 import dk.sdu.mmmi.cbse.common.data.GameData;
 import dk.sdu.mmmi.cbse.common.data.World;
 import dk.sdu.mmmi.cbse.common.services.IGamePluginService;
+import javafx.scene.paint.Color;
 
 import java.util.Random;
 
@@ -23,12 +24,15 @@ public class EnemyPlugin implements IGamePluginService {
     private Entity createEnemy(GameData gameData){
         Entity enemyShip = new Enemy();
         enemyShip.setPolygonCoordinates(
-               0,20,
-               -20,-10,
-               20,-10
+                0,30,
+                -30,0,
+               0,-30,
+                30,0
         );
         enemyShip.setX(gameData.getDisplayHeight()/2);
         enemyShip.setY(gameData.getDisplayWidth()/2);
+        enemyShip.setRotation(Math.random());
+        enemyShip.setColor(Color.ORANGE);
         return enemyShip;
     }
 

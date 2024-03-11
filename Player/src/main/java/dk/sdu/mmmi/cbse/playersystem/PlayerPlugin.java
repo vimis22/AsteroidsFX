@@ -4,6 +4,8 @@ import dk.sdu.mmmi.cbse.common.data.Entity;
 import dk.sdu.mmmi.cbse.common.data.GameData;
 import dk.sdu.mmmi.cbse.common.data.World;
 import dk.sdu.mmmi.cbse.common.services.IGamePluginService;
+import javafx.scene.paint.Color;
+
 public class PlayerPlugin implements IGamePluginService {
 
     private Entity player;
@@ -22,12 +24,26 @@ public class PlayerPlugin implements IGamePluginService {
 
         Entity playerShip = new Player();
         playerShip.setPolygonCoordinates(
-                0,10,
-                -10,0,
-                0,-10,
-                10,0);
+                0,30,
+                -10,20,
+                -20,20,
+                -20,10,
+                -30,0,
+                -20,-10,
+                -20,-20,
+                -10,-20,
+                0,-30,
+                10,-20,
+                20,-20,
+                20,-10,
+                30,0,
+                20,10,
+                20,20,
+                10,20);
         playerShip.setX(gameData.getDisplayHeight()/2);
         playerShip.setY(gameData.getDisplayWidth()/2);
+        playerShip.setRotation(Math.random());
+        playerShip.setColor(Color.BLUEVIOLET);
         return playerShip;
     }
 

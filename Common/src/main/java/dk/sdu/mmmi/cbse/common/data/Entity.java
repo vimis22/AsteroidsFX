@@ -1,5 +1,7 @@
 package dk.sdu.mmmi.cbse.common.data;
 
+import javafx.scene.paint.Paint;
+
 import java.io.Serializable;
 import java.util.UUID;
 
@@ -13,6 +15,8 @@ public class Entity implements Serializable {
     private double rotation;
     private double objectiveX;
     private double objectiveY;
+
+    private Paint color;
 
     public String getID() {
         return ID.toString();
@@ -69,6 +73,12 @@ public class Entity implements Serializable {
         this.objectiveY = objectiveY;
     }
 
+    public void setColor(Paint color){
+        this.color = color;
+    }
 
+    public Paint getColor(){
+        return color;
+    }
 
 }

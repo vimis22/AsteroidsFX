@@ -84,6 +84,7 @@ public class Main extends Application {
         }
         for (Entity entity : world.getEntities()) {
             Polygon polygon = new Polygon(entity.getPolygonCoordinates());
+            polygon.setFill(entity.getColor());
             polygons.put(entity, polygon);
             gameWindow.getChildren().add(polygon);
         }
