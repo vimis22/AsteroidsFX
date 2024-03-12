@@ -17,8 +17,11 @@ public class EnemyPlugin implements IGamePluginService {
 
     @Override
     public void start(GameData gameData, World world) {
-        enemy = createEnemy(gameData);
-        world.addEntity(enemy);
+        int duplication = 4;
+        for(int i = 0; i<duplication; i++){
+            enemy = createEnemy(gameData);
+            world.addEntity(enemy);
+        }
     }
 
     private Entity createEnemy(GameData gameData){
@@ -29,9 +32,10 @@ public class EnemyPlugin implements IGamePluginService {
                0,-30,
                 30,0
         );
-        enemyShip.setX(gameData.getDisplayHeight()/2);
-        enemyShip.setY(gameData.getDisplayWidth()/2);
-        enemyShip.setRotation(Math.random());
+        Random random = new Random();
+        enemyShip.setX(random.nextDouble(0, gameData.getDisplayWidth()));
+        enemyShip.setY(random.nextDouble(0, gameData.getDisplayHeight()));
+        enemyShip.setRotation(random.nextDouble(0,360));
         enemyShip.setColor(Color.ORANGE);
         return enemyShip;
     }
