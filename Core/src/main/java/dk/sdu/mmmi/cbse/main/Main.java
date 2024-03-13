@@ -123,6 +123,8 @@ public class Main extends Application {
     }
 
     private void draw() {
+        //Når et entity dør, så skal den fjernes fra world, polygons og gameWindow.
+        //Her skal du tænke på, hvordan en entity skal fjernes.
         for (Entity entity : world.getEntities()) {
             Polygon polygon = polygons.get(entity);
             if (polygon == null) {
