@@ -1,5 +1,6 @@
 <h1>Componentsbased Asteroids Project</h1>
 
+<h2>Teachers Notes </h2>
 Build the project from the root folder with the following Maven command:
 mvn clean install
 

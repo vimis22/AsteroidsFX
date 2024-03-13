@@ -47,6 +47,7 @@ public class AsteroidsPlugin implements IGamePluginService {
         Random random = new Random();
         asteroidsShip.setX(random.nextDouble(0,gameData.getDisplayWidth()));
         asteroidsShip.setY(random.nextDouble(0, gameData.getDisplayHeight()));
+        asteroidsShip.setRotation(random.nextDouble(0,360));
         asteroidsShip.setColor(Color.GREY);
         return asteroidsShip;
     }
