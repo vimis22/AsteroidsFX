@@ -24,22 +24,10 @@ public class PlayerPlugin implements IGamePluginService {
 
         Entity playerShip = new Player();
         playerShip.setPolygonCoordinates(
-                0,30,
-                -10,20,
-                -20,20,
-                -20,10,
-                -30,0,
-                -20,-10,
-                -20,-20,
+                -20,0,
                 -10,-20,
-                0,-30,
-                10,-20,
-                20,-20,
-                20,-10,
-                30,0,
-                20,10,
-                20,20,
-                10,20);
+                20,0,
+                -10,20);
         playerShip.setX(gameData.getDisplayHeight()/2);
         playerShip.setY(gameData.getDisplayWidth()/2);
         playerShip.setRotation(Math.random());
@@ -54,3 +42,20 @@ public class PlayerPlugin implements IGamePluginService {
     }
 
 }
+
+/*0,30,
+        -10,20,
+        -20,20,
+        -20,10,
+        -30,0,
+        -20,-10,
+        -20,-20,
+        -10,-20,
+        0,-30,
+        10,-20,
+        20,-20,
+        20,-10,
+        30,0,
+        20,10,
+        20,20,
+        10,20*/
