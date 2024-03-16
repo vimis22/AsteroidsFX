@@ -135,6 +135,11 @@ public class Main extends Application {
             polygon.setTranslateX(entity.getX());
             polygon.setTranslateY(entity.getY());
             polygon.setRotate(entity.getRotation());
+            if(entity.getDeath()){
+                polygons.remove(polygon);
+                world.removeEntity(entity);
+                gameWindow.getChildren().remove(polygon);
+            }
         }
 
     }

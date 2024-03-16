@@ -10,6 +10,8 @@ public class PlayerPlugin implements IGamePluginService {
 
     private Entity player;
 
+    private boolean death;
+
     public PlayerPlugin() {
     }
 
@@ -40,7 +42,6 @@ public class PlayerPlugin implements IGamePluginService {
         // Remove entities
         world.removeEntity(player);
     }
-
 }
 
 /*0,30,
