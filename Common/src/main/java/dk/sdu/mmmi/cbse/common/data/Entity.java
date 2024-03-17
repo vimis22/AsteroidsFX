@@ -9,7 +9,6 @@ public class Entity implements Serializable {
     private final UUID ID = UUID.randomUUID();
     private boolean death = false;
     private double[] polygonCoordinates;
-
     private double radius;
     private double x;
     private double y;

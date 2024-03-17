@@ -26,6 +26,7 @@ public class AsteroidsPlugin implements IGamePluginService {
 
     private Entity createAsteroids(GameData gameData){
         Entity asteroidsShip = new Asteroids();
+        asteroidsShip.setRadius(30);
         asteroidsShip.setPolygonCoordinates(
                 0,30,
                 -10,20,
