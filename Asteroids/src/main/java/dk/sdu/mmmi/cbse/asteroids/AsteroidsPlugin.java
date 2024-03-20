@@ -60,6 +60,7 @@ public class AsteroidsPlugin implements IGamePluginService {
                 medium,medium,
                 small,medium
         );
+        asteroidsShip.setRadius(size);
         asteroidsShip.setRotation(random.nextDouble(0,360));
         asteroidsShip.setColor(Color.GREY);
         return asteroidsShip;
