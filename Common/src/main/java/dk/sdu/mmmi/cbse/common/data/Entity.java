@@ -8,6 +8,8 @@ import java.util.UUID;
 public class Entity implements Serializable {
 
     private final UUID ID = UUID.randomUUID();
+
+    private double size;
     
     private double[] polygonCoordinates;
     private double x;
@@ -79,6 +81,14 @@ public class Entity implements Serializable {
 
     public Paint getColor(){
         return color;
+    }
+
+    public void setSize(Double size){
+        this.size = size;
+    }
+
+    public Double getSize(){
+        return size;
     }
 
 }
