@@ -53,6 +53,34 @@ public class AsteroidsPlugin implements IGamePluginService {
         return asteroidsShip;
     }
 
+    //Jeg har lavet mit SplitAsteroids, men den skal bare indsættes inde i et andet modul-mappe,
+//    private Entity splitAsteroids(GameData gameData){
+//        Entity splittedAsteroids = new Asteroids();
+//        splittedAsteroids.setRadius(30);
+//        splittedAsteroids.setPolygonCoordinates(
+//                0,20,
+//                -10,10,
+//                -20,10,
+//                -30,0,
+//                -20,-10,
+//                -10,-10,
+//                0,-20,
+//                10,-10,
+//                20,-10,
+//                30,0,
+//                20,10,
+//                10,10,
+//                0,20
+//
+//        );
+//        Random random = new Random();
+//        splittedAsteroids.setX(random.nextDouble(0,gameData.getDisplayWidth()));
+//        splittedAsteroids.setY(random.nextDouble(0, gameData.getDisplayHeight()));
+//        splittedAsteroids.setRotation(random.nextDouble(0,360));
+//        splittedAsteroids.setColor(Color.GREY);
+//        return splittedAsteroids;
+//    }
+
     @Override
     public void stop(GameData gameData, World world) {
 
