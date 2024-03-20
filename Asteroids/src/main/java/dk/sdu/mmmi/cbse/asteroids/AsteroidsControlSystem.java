@@ -2,18 +2,13 @@ package dk.sdu.mmmi.cbse.asteroids;
 
 import dk.sdu.mmmi.cbse.common.data.Entity;
 import dk.sdu.mmmi.cbse.common.data.GameData;
-import dk.sdu.mmmi.cbse.common.data.GameKeys;
 import dk.sdu.mmmi.cbse.common.data.World;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
-
-import java.util.Collection;
-import java.util.Random;
-import java.util.ServiceLoader;
-
-import static java.util.stream.Collectors.toList;
+import dk.sdu.mmmi.cbse.commonasteroids.Asteroids;
+import dk.sdu.mmmi.cbse.commonasteroids.SplitAsteroids;
 
 public class AsteroidsControlSystem implements IEntityProcessingService{
-
+    private SplitAsteroids asteriodsSplitter = new AsteroidsSplitImpl();
     @Override
     public void process(GameData gameData, World world) {
         for(Entity asteroids: world.getEntities(Asteroids.class)){

@@ -41,6 +41,8 @@ public class EnemyPlugin implements IGamePluginService {
         return enemyShip;
     }
 
+
+
     @Override
     public void stop(GameData gameData, World world) {
         world.removeEntity(enemy);

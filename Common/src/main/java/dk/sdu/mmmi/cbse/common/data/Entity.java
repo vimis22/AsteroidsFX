@@ -6,7 +6,11 @@ import java.io.Serializable;
 import java.util.UUID;
 
 public class Entity implements Serializable {
+
     private final UUID ID = UUID.randomUUID();
+
+    private double size;
+
     private boolean death = false;
     private double[] polygonCoordinates;
     private double radius;
@@ -79,6 +83,14 @@ public class Entity implements Serializable {
 
     public Paint getColor(){
         return color;
+    }
+
+    public void setSize(Double size){
+        this.size = size;
+    }
+
+    public Double getSize(){
+        return size;
     }
 
     public void setDeath(boolean death){
