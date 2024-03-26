@@ -12,24 +12,26 @@ public class AsteroidsPostControlSystem implements IPostEntityProcessingService 
 
     @Override
     public void process(GameData gameData, World world) {
-        //Kigger efter hvor mange asteroids der er tilbage.
-        //Size fortæller, hvor mange elementer der er i et array.
-        //Metoden fortæller, at hvis der er ingen asteroider, så skal der dannes flere udefra Random i AsteroidsPlugin.
-        if(world.getEntities(Asteroids.class).size() == 0){
-            AsteroidsPlugin asteroidsPlugin = new AsteroidsPlugin();
-            asteroidsPlugin.start(gameData,world);
-        }else{
-            for (Entity asteroids: world.getEntities(Asteroids.class) ) {
-                asteroidsSplitter.createSplitAsteroid(asteroids,world,gameData);
-            }
-        }
+//        //Kigger efter hvor mange asteroids der er tilbage.
+//        //Size fortæller, hvor mange elementer der er i et array.
+//        //Metoden fortæller, at hvis der er ingen asteroider, så skal der dannes flere udefra Random i AsteroidsPlugin.
+//        if(world.getEntities(Asteroids.class).size() == 0){
+//            AsteroidsPlugin asteroidsPlugin = new AsteroidsPlugin();
+//            asteroidsPlugin.start(gameData,world);
+//        }else{
+//            for (Entity asteroids: world.getEntities(Asteroids.class) ) {
+//                if(asteroids.getDeath()){
+//                    asteroidsSplitter.createSplitAsteroid(asteroids,world,gameData);
+//                }
+//            }
+//        }
     }
-
-    public void setAsteroidsSplitter(SplitAsteroids asteroidsSplitter){
-        this.asteroidsSplitter = asteroidsSplitter;
-    }
-
-    public void removeAsteroidsSplitter(SplitAsteroids asteroidsSplitter){
-        this.asteroidsSplitter = null;
-    }
+//
+//    public void setAsteroidsSplitter(SplitAsteroids asteroidsSplitter){
+//        this.asteroidsSplitter = asteroidsSplitter;
+//    }
+//
+//    public void removeAsteroidsSplitter(SplitAsteroids asteroidsSplitter){
+//        this.asteroidsSplitter = null;
+//    }
 }
