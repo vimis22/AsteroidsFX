@@ -6,9 +6,8 @@ import dk.sdu.mmmi.cbse.common.data.World;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
 import dk.sdu.mmmi.cbse.commonasteroids.Asteroids;
 import dk.sdu.mmmi.cbse.commonasteroids.SplitAsteroids;
-
 public class AsteroidsControlSystem implements IEntityProcessingService{
-    private SplitAsteroids asteriodsSplitter = new AsteroidsSplitImpl();
+    public SplitAsteroids asteroidsSplitter = new AsteroidsSplitImpl();
     @Override
     public void process(GameData gameData, World world) {
         for(Entity asteroids: world.getEntities(Asteroids.class)){
@@ -30,4 +29,5 @@ public class AsteroidsControlSystem implements IEntityProcessingService{
             }
         }
     }
+
 }
