@@ -4,9 +4,10 @@ import dk.sdu.mmmi.cbse.common.data.Entity;
 import dk.sdu.mmmi.cbse.common.data.GameData;
 import dk.sdu.mmmi.cbse.common.data.World;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
+import dk.sdu.mmmi.cbse.common.services.IPostEntityProcessingService;
 import dk.sdu.mmmi.cbse.commonasteroids.Asteroids;
 import dk.sdu.mmmi.cbse.commonasteroids.SplitAsteroids;
-public class AsteroidsControlSystem implements IEntityProcessingService{
+public class AsteroidsControlSystem implements IEntityProcessingService, IPostEntityProcessingService {
     public SplitAsteroids asteroidsSplitter = new AsteroidsSplitImpl();
     @Override
     public void process(GameData gameData, World world) {
@@ -28,6 +29,24 @@ public class AsteroidsControlSystem implements IEntityProcessingService{
                 asteroids.setY(0);
             }
         }
+
+        if(world.getEntities(Asteroids.class).size() == 0){
+            AsteroidsPlugin asteroidsPlugin = new AsteroidsPlugin();
+            asteroidsPlugin.start(gameData,world);
+        }else{
+            for (Entity asteroids: world.getEntities(Asteroids.class) ) {
+                if(asteroids.getDeath()){
+                    asteroidsSplitter.createSplitAsteroid(asteroids,world,gameData);
+                }
+            }
+        }
+    }
+    public void setAsteroidsSplitter(SplitAsteroids asteroidsSplitter){
+        this.asteroidsSplitter = asteroidsSplitter;
+    }
+
+    public void removeAsteroidsSplitter(SplitAsteroids asteroidsSplitter){
+        this.asteroidsSplitter = null;
     }
 
 }
