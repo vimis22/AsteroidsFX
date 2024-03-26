@@ -19,7 +19,7 @@ public class AsteroidsPlugin implements IGamePluginService {
     @Override
     public void start(GameData gameData, World world) {
         Random random = new Random();
-        int duplication = random.nextInt(0,10);
+        int duplication = random.nextInt(0,2);
         for (int i =0; i<duplication; i++){
             asteroids = createAsteroids(gameData,null);
             world.addEntity(asteroids);
