@@ -17,7 +17,8 @@ public class EnemyPlugin implements IGamePluginService {
 
     @Override
     public void start(GameData gameData, World world) {
-        int duplication = 1;
+        Random random = new Random();
+        int duplication = random.nextInt(0,10);
         for (int i = 0; i<duplication; i++){
             enemy = createEnemy(gameData);
             world.addEntity(enemy);
