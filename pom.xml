@@ -18,6 +18,7 @@
         <module>CommonBullet</module>
         <module>Enemy</module>
         <module>Asteroids</module>
+        <module>AsteroidsSplitPackage</module>
         <module>Collisions</module>
         <module>CommonAsteroids</module>
     </modules>
