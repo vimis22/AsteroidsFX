@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--    Here we are creating the classes through beans, which will be provided.-->
+    <bean id="Game" class="dk.sdu.mmmi.cbse.main.Game">
+        <constructor-arg index="0" value="iEntityProcessingService"/>
+        <constructor-arg index="1" value="iPostEntityProcessingService"/>
+        <constructor-arg index="2" value="iGamePluginService"/>
+    </bean>
+</beans>
