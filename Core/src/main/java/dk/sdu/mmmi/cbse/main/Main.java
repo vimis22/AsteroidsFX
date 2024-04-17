@@ -8,12 +8,13 @@ import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
 import dk.sdu.mmmi.cbse.common.services.IGamePluginService;
 import dk.sdu.mmmi.cbse.common.services.IPostEntityProcessingService;
 
-import java.lang.module.ModuleFinder;
+import java.lang.module.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
+import java.lang.module.ModuleFinder;
 
 import static java.util.stream.Collectors.toList;
 import javafx.animation.AnimationTimer;
@@ -32,9 +33,10 @@ public class Main extends Application {
     private final World world = new World();
     private final Map<Entity, Polygon> polygons = new ConcurrentHashMap<>();
     private final Pane gameWindow = new Pane();
+    private static ModuleLayer layer;
 
     public static void main(String[] args) {
-        Path pluginsDir = Paths.get("plugins"); // Directory with plugins JARs
+        Path pluginsDir = Paths.get("Plugins"); // Directory with plugins JARs
 
         // Search for plugins in the plugins directory
         ModuleFinder pluginsFinder = ModuleFinder.of(pluginsDir);
