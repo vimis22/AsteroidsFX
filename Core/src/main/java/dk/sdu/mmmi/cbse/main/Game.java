@@ -30,11 +30,11 @@ public class Game {
     private final World world = new World();
     private final Map<Entity, Polygon> polygons = new ConcurrentHashMap<>();
     private final Pane gameWindow = new Pane();
-    private final IEntityProcessingService iEntityProcessingService;
-    private final IPostEntityProcessingService iPostEntityProcessingService;
-    private final IGamePluginService iGamePluginService;
+    private final List<IEntityProcessingService> iEntityProcessingService;
+    private final List<IPostEntityProcessingService> iPostEntityProcessingService;
+    private final List<IGamePluginService> iGamePluginService;
 
-    public Game(IEntityProcessingService iEntityProcessingService, IPostEntityProcessingService iPostEntityProcessingService, IGamePluginService iGamePluginService) {
+    public Game(List<IEntityProcessingService> iEntityProcessingService, List<IPostEntityProcessingService> iPostEntityProcessingService, List<IGamePluginService> iGamePluginService) {
         this.iEntityProcessingService = iEntityProcessingService;
         this.iPostEntityProcessingService = iPostEntityProcessingService;
         this.iGamePluginService = iGamePluginService;
@@ -146,17 +146,5 @@ public class Game {
             }
         }
 
-    }
-
-    private Collection<? extends IGamePluginService> getPluginServices() {
-        return ServiceLoader.load(IGamePluginService.class).stream().map(ServiceLoader.Provider::get).collect(toList());
-    }
-
-    private Collection<? extends IEntityProcessingService> getEntityProcessingServices() {
-        return ServiceLoader.load(IEntityProcessingService.class).stream().map(ServiceLoader.Provider::get).collect(toList());
-    }
-
-    private Collection<? extends IPostEntityProcessingService> getPostEntityProcessingServices() {
-        return ServiceLoader.load(IPostEntityProcessingService.class).stream().map(ServiceLoader.Provider::get).collect(toList());
     }
 }

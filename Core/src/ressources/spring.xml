@@ -5,8 +5,12 @@
 
 <!--    Here we are creating the classes through beans, which will be provided.-->
     <bean id="Game" class="dk.sdu.mmmi.cbse.main.Game">
-        <constructor-arg index="0" value="iEntityProcessingService"/>
-        <constructor-arg index="1" value="iPostEntityProcessingService"/>
-        <constructor-arg index="2" value="iGamePluginService"/>
+        <constructor-arg index="0" ref="iEntityProcessingService"/>
+        <constructor-arg index="1" ref="iPostEntityProcessingService"/>
+        <constructor-arg index="2" ref="iGamePluginService"/>
     </bean>
+    <bean id="iEntityProcessingService" class="dk.sdu.mmmi.cbse.main.HelperClass" factory-method="getEntityProcessingServices"/>
+    <bean id="iGamePluginService" class="dk.sdu.mmmi.cbse.main.HelperClass" factory-method="getPluginServices"/>
+    <bean id="iPostEntityProcessingService" class="dk.sdu.mmmi.cbse.main.HelperClass" factory-method="getPostEntityProcessingServices"/>
+
 </beans>
