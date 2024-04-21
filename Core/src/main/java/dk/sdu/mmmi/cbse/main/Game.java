@@ -9,10 +9,8 @@ import dk.sdu.mmmi.cbse.common.services.IGamePluginService;
 import dk.sdu.mmmi.cbse.common.services.IPostEntityProcessingService;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Polygon;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.util.Collection;
@@ -38,66 +36,21 @@ public class Game {
         launch(Main.class);
     }
 
-    @Override
     public void start(Stage window) throws Exception {
-        Text text = new Text(10, 20, "Destroyed asteroids: 0");
-        gameWindow.setPrefSize(gameData.getDisplayWidth(), gameData.getDisplayHeight());
-        gameWindow.getChildren().add(text);
+        loadPlugins();
 
-        Scene scene = new Scene(gameWindow);
-        scene.setOnKeyPressed(event -> {
-            if (event.getCode().equals(KeyCode.LEFT)) {
-                gameData.getKeys().setKey(GameKeys.LEFT, true);
-            }
-            if (event.getCode().equals(KeyCode.RIGHT)) {
-                gameData.getKeys().setKey(GameKeys.RIGHT, true);
-            }
-            if (event.getCode().equals(KeyCode.UP)) {
-                gameData.getKeys().setKey(GameKeys.UP, true);
-            }
-            if (event.getCode().equals(KeyCode.SPACE)) {
-                gameData.getKeys().setKey(GameKeys.SPACE, true);
-            }
-            if (event.getCode().equals(KeyCode.DOWN)){
-                gameData.getKeys().setKey(GameKeys.DOWN, true);
-            }
-        });
-        scene.setOnKeyReleased(event -> {
-            if (event.getCode().equals(KeyCode.LEFT)) {
-                gameData.getKeys().setKey(GameKeys.LEFT, false);
-            }
-            if (event.getCode().equals(KeyCode.RIGHT)) {
-                gameData.getKeys().setKey(GameKeys.RIGHT, false);
-            }
-            if (event.getCode().equals(KeyCode.UP)) {
-                gameData.getKeys().setKey(GameKeys.UP, false);
-            }
-            if (event.getCode().equals(KeyCode.SPACE)) {
-                gameData.getKeys().setKey(GameKeys.SPACE, false);
-            }
-            if (event.getCode().equals(KeyCode.DOWN)){
-                gameData.getKeys().setKey(GameKeys.DOWN, false);
-            }
-
-        });
-
-        // Lookup all Game Plugins using ServiceLoader
-        for (IGamePluginService iGamePlugin : getPluginServices()) {
-            iGamePlugin.start(gameData, world);
-        }
-        for (Entity entity : world.getEntities()) {
-            Polygon polygon = new Polygon(entity.getPolygonCoordinates());
-            polygon.setFill(entity.getColor());
-            polygons.put(entity, polygon);
-            gameWindow.getChildren().add(polygon);
-        }
-
-        render();
-
+        Scene scene = new Scene(gameWindow,600,600);
         window.setScene(scene);
         window.setTitle("ASTEROIDS");
         window.show();
+        render();
 
+    }
+
+    private void loadPlugins(){
+        for (IGamePluginService pluginService : getPluginServices()){
+            pluginService.start(gameData,world);
+        }
     }
 
     private void render() {
