@@ -13,7 +13,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage window) throws Exception {
-        ApplicationContext context = new ClassPathXmlApplicationContext("C:\\Users\\vivek\\Downloads\\Projects\\AsteroidsFXNEW\\Core\\src\\ressources\\spring.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
         Game game = context.getBean("Game",Game.class);
+        game.start(window);
     }
 }

@@ -12,5 +12,4 @@
     <bean id="iEntityProcessingService" class="dk.sdu.mmmi.cbse.main.HelperClass" factory-method="getEntityProcessingServices"/>
     <bean id="iGamePluginService" class="dk.sdu.mmmi.cbse.main.HelperClass" factory-method="getPluginServices"/>
     <bean id="iPostEntityProcessingService" class="dk.sdu.mmmi.cbse.main.HelperClass" factory-method="getPostEntityProcessingServices"/>
-
 </beans>
