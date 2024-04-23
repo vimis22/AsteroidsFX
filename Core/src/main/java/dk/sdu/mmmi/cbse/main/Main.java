@@ -2,8 +2,7 @@ package dk.sdu.mmmi.cbse.main;
 import javafx.application.Application;
 
 import javafx.stage.Stage;
-import org.springframework.context.ann;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 
 public class Main extends Application {
@@ -13,7 +12,12 @@ public class Main extends Application {
 
     @Override
     public void start(Stage window) throws Exception {
-        ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(HelperClass.class);
+
+        for (String beanName : context.getBeanDefinitionNames()) {
+            System.out.println(beanName);
+        }
+
         Game game = context.getBean("Game",Game.class);
         game.start(window);
     }
