@@ -96,7 +96,7 @@ public class Game {
 
     }
 
-    private void render() {
+    public void render() {
         new AnimationTimer() {
             private final long then = 0;
 

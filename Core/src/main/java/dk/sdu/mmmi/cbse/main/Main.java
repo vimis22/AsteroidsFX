@@ -20,6 +20,7 @@ public class Main extends Application {
 
         Game game = context.getBean("Game",Game.class);
         game.start(window);
+        game.render();
     }
 
 }
