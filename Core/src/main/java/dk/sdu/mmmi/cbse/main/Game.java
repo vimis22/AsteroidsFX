@@ -7,6 +7,11 @@ import dk.sdu.mmmi.cbse.common.data.World;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
 import dk.sdu.mmmi.cbse.common.services.IGamePluginService;
 import dk.sdu.mmmi.cbse.common.services.IPostEntityProcessingService;
+
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
 import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
@@ -15,22 +20,21 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.ServiceLoader;
-import java.util.concurrent.ConcurrentHashMap;
-
-import static java.util.stream.Collectors.toList;
-
 public class Game {
     private final GameData gameData = new GameData();
     private final World world = new World();
     private final Map<Entity, Polygon> polygons = new ConcurrentHashMap<>();
     private final Pane gameWindow = new Pane();
-    private final List<>
+    private final List<IEntityProcessingService> iEntityProcessingService;
+    private final List<IPostEntityProcessingService> iPostEntityProcessingService;
+    private final List<IGamePluginService> iGamePluginService;
 
-    @Override
+    public Game(List<IEntityProcessingService> iEntityProcessingService, List<IPostEntityProcessingService> iPostEntityProcessingService, List<IGamePluginService> iGamePluginService) {
+        this.iEntityProcessingService = iEntityProcessingService;
+        this.iPostEntityProcessingService = iPostEntityProcessingService;
+        this.iGamePluginService = iGamePluginService;
+    }
+
     public void start(Stage window) throws Exception {
         Text text = new Text(10, 20, "Destroyed asteroids: 0");
         gameWindow.setPrefSize(gameData.getDisplayWidth(), gameData.getDisplayHeight());
@@ -94,7 +98,7 @@ public class Game {
 
     private void render() {
         new AnimationTimer() {
-            private long then = 0;
+            private final long then = 0;
 
             @Override
             public void handle(long now) {
@@ -136,18 +140,18 @@ public class Game {
                 gameWindow.getChildren().remove(polygon);
             }
         }
-
     }
 
-    private List<? extends IGamePluginService> getPluginServices() {
-        return ServiceLoader.load(IGamePluginService.class).stream().map(ServiceLoader.Provider::get).collect(toList());
+    public List<IGamePluginService> getPluginServices() {
+        return iGamePluginService;
     }
 
-    private List<? extends IEntityProcessingService> getEntityProcessingServices() {
-        return ServiceLoader.load(IEntityProcessingService.class).stream().map(ServiceLoader.Provider::get).collect(toList());
+    public List<IEntityProcessingService> getEntityProcessingServices() {
+        return iEntityProcessingService;
     }
 
-    private List<? extends IPostEntityProcessingService> getPostEntityProcessingServices() {
-        return ServiceLoader.load(IPostEntityProcessingService.class).stream().map(ServiceLoader.Provider::get).collect(toList());
+    public List<IPostEntityProcessingService> getPostEntityProcessingServices() {
+        return iPostEntityProcessingService;
     }
+
 }
