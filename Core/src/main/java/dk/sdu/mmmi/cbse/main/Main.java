@@ -18,7 +18,7 @@ public class Main extends Application {
             System.out.println(beanName);
         }
 
-        Game game = context.getBean("Game",Game.class);
+        Game game = context.getBean(Game.class);
         game.start(window);
         game.render();
     }
