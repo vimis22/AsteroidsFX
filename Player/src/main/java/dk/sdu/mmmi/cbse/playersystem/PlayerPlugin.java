@@ -43,20 +43,3 @@ public class PlayerPlugin implements IGamePluginService {
         world.removeEntity(player);
     }
 }
-
-/*0,30,
-        -10,20,
-        -20,20,
-        -20,10,
-        -30,0,
-        -20,-10,
-        -20,-20,
-        -10,-20,
-        0,-30,
-        10,-20,
-        20,-20,
-        20,-10,
-        30,0,
-        20,10,
-        20,20,
-        10,20*/
