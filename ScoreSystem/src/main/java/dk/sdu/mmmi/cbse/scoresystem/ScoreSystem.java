@@ -19,4 +19,9 @@ public class ScoreSystem {
         totalScore += point;
         return totalScore;
     }
+
+    @GetMapping("/")
+    public String getScore() {
+        return totalScore + "";
+    }
 }
