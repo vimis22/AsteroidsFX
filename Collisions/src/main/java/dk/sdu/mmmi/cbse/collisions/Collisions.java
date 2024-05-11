@@ -24,7 +24,7 @@ public class Collisions implements IPostEntityProcessingService{
         }
     }
 
-    public Boolean collides(Entity entity1, Entity entity2){
+    public boolean collides(Entity entity1, Entity entity2){
         Boolean collides = false;
         double distance = Math.sqrt(((entity2.getX()-entity1.getX())*(entity2.getX()-entity1.getX()))+
                 (entity2.getY()-entity1.getY())*(entity2.getY()-entity1.getY()));
