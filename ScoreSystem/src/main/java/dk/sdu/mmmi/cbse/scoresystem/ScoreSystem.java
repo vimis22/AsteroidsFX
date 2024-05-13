@@ -15,14 +15,14 @@ public class ScoreSystem {
     }
 
     @GetMapping("/score")
-    public Long setScore(@RequestParam(value="point") Long point) {
+    public Long incrementScore(@RequestParam(value= "score") Long point) {
         totalScore += point;
         return totalScore;
     }
 
     @GetMapping("/")
     public String getScore() {
-        return totalScore + "";
+        return "This is point " + totalScore;
     }
 
 }

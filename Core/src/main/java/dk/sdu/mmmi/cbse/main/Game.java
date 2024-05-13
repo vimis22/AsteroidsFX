@@ -8,6 +8,13 @@ import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
 import dk.sdu.mmmi.cbse.common.services.IGamePluginService;
 import dk.sdu.mmmi.cbse.common.services.IPostEntityProcessingService;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URL;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -149,11 +156,29 @@ public class Game {
                 world.removeEntity(entity);
                 gameWindow.getChildren().remove(polygon);
 
+                //Her optælles vores point i venstre hjørne af JavaFX.
                 if(entity.getClass().getSimpleName().contains("Asteroid")){
                     pointScore++;
                     totalScoreDisplay.setText("Destroyed asteroids: " + pointScore);
+                    updateScore();
                 }
             }
+        }
+    }
+
+    private void updateScore(){
+        try{
+            final String uri = "http://localhost:8090/score";
+            URL url = new URL(uri);
+            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setRequestMethod("GET");
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+            totalScoreDisplay.setText("Destroyed" + reader.readLine());
+            urlConnection.disconnect();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
