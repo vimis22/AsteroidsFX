@@ -85,11 +85,11 @@ public class Entity implements Serializable {
         return color;
     }
 
-    public void setSize(Double size){
+    public void setSize(double size){
         this.size = size;
     }
 
-    public Double getSize(){
+    public double getSize(){
         return size;
     }
 
