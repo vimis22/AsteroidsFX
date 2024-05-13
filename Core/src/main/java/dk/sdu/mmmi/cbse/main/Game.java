@@ -151,6 +151,7 @@ public class Game {
 
                 if(entity.getClass().getSimpleName().contains("Asteroid")){
                     pointScore++;
+                    totalScoreDisplay.setText("Destroyed asteroids: " + pointScore);
                 }
             }
         }

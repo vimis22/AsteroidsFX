@@ -11,7 +11,7 @@ public class Collisions implements IPostEntityProcessingService{
         for(Entity entity1 : world.getEntities()){
             for(Entity entity2 : world.getEntities()){
                 if(entity1==entity2 || entity1.getColor()==entity2.getColor()){
-                    System.out.println("Not Collided");
+                    //System.out.println("Not Collided");
                     continue;
                 }
                 if(this.collides(entity1,entity2)){
