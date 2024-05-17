@@ -1,28 +1,27 @@
 package dk.sdu.mmmi.cbse.scoresystem;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @SpringBootApplication
+@RequestMapping("/score")
 @RestController
 public class ScoreSystem {
-    private Long totalScore = 0L;
+    private Long currentScore = 0L;
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         SpringApplication.run(ScoreSystem.class, args);
     }
 
-    @GetMapping("/score")
-    public Long incrementScore(@RequestParam(value= "score") Long point) {
-        totalScore += point;
-        return totalScore;
+    @GetMapping
+    public Long getScore() {
+        return currentScore;
     }
 
-    @GetMapping("/")
-    public String getScore() {
-        return "This is point " + totalScore;
+    @PutMapping("/update/{score}")
+    public Long updateScore(@PathVariable(value = "score") Long score) {
+        currentScore += score;
+        return currentScore;
     }
-
 }
