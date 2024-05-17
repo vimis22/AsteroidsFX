@@ -155,17 +155,20 @@ public class Game {
                 if(entity.getClass().getSimpleName().contains("Asteroid")){
                     pointScore++;
                     totalScoreDisplay.setText("Destroyed asteroids: " + pointScore);
+
                     // Update score for microservice
+                    //This part has been inspired from: {@link: https://docs.oracle.com/en/java/javase/17/docs//api/java.net.http/java/net/http/HttpRequest.html#newBuilder()}
+                    //This part has also been done in collaboration with other classmates, such as BetaHunter.
                     System.out.println();
-                    HttpClient httpClient = HttpClient.newHttpClient();
-                    HttpRequest request = HttpRequest.newBuilder()
-                            .uri(URI.create("http://localhost:8080/score/update/" + 1))
+                    HttpClient client = HttpClient.newHttpClient();
+                    HttpRequest requestbuilder = HttpRequest.newBuilder()
+                            .uri(URI.create("http://localhost:8080/pointscore/refresh/" + 1))
                             .PUT(HttpRequest.BodyPublishers.ofString("")).build();
 
                     try {
-                        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+                        HttpResponse<String> response = client.send(requestbuilder, HttpResponse.BodyHandlers.ofString());
                     } catch (IOException | InterruptedException e) {
-
+                        System.out.println("The Server does not recieve the pointscores.");
                     }
                 }
             }

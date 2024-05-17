@@ -5,23 +5,23 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.*;
 
 @SpringBootApplication
-@RequestMapping("/score")
+@RequestMapping("/pointscore")
 @RestController
 public class ScoreSystem {
-    private Long currentScore = 0L;
+    private Long totalScore = 0L;
 
     public static void main(String[] args) {
         SpringApplication.run(ScoreSystem.class, args);
     }
 
-    @GetMapping
-    public Long getScore() {
-        return currentScore;
+    @PutMapping("/refresh/{pointscore}")
+    public Long incrementScore(@PathVariable(value = "pointscore") Long pointscore) {
+        totalScore += pointscore;
+        return totalScore;
     }
 
-    @PutMapping("/update/{score}")
-    public Long updateScore(@PathVariable(value = "score") Long score) {
-        currentScore += score;
-        return currentScore;
+    @GetMapping
+    public Long getScore() {
+        return totalScore;
     }
 }
