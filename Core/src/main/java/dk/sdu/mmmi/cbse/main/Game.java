@@ -8,6 +8,8 @@ import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
 import dk.sdu.mmmi.cbse.common.services.IGamePluginService;
 import dk.sdu.mmmi.cbse.common.services.IPostEntityProcessingService;
 
+import java.io.IOException;
+import java.net.URI;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -16,15 +18,21 @@ import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 
 public class Game {
     private final GameData gameData = new GameData();
     private final World world = new World();
     private final Map<Entity, Polygon> polygons = new ConcurrentHashMap<>();
     private final Pane gameWindow = new Pane();
+    private Text totalScoreDisplay;
+    private int pointScore;
     private final List<IEntityProcessingService> iEntityProcessingService;
     private final List<IPostEntityProcessingService> iPostEntityProcessingService;
     private final List<IGamePluginService> iGamePluginService;
@@ -36,9 +44,12 @@ public class Game {
     }
 
     public void start(Stage window) throws Exception {
-        Text text = new Text(10, 20, "Destroyed asteroids: 0");
+        pointScore = 0;
+        totalScoreDisplay = new Text(10, 20, "Destroyed asteroids: " + pointScore);
+        totalScoreDisplay.setFill(Color.BLUE);
         gameWindow.setPrefSize(gameData.getDisplayWidth(), gameData.getDisplayHeight());
-        gameWindow.getChildren().add(text);
+        gameWindow.getChildren().add(totalScoreDisplay);
+
 
         Scene scene = new Scene(gameWindow);
         scene.setOnKeyPressed(event -> {
@@ -87,6 +98,7 @@ public class Game {
             polygons.put(entity, polygon);
             gameWindow.getChildren().add(polygon);
         }
+
 
         render();
 
@@ -138,6 +150,25 @@ public class Game {
                 polygons.remove(polygon);
                 world.removeEntity(entity);
                 gameWindow.getChildren().remove(polygon);
+
+                //Her optælles vores point i venstre hjørne af JavaFX.
+                if(entity.getClass().getSimpleName().contains("Asteroid")){
+                    pointScore++;
+                    totalScoreDisplay.setText("Destroyed asteroids: " + pointScore);
+
+                    // Update score for microservice
+                    //This part has been inspired from: {@link: https://docs.oracle.com/en/java/javase/17/docs//api/java.net.http/java/net/http/HttpRequest.html#newBuilder()}
+                    HttpClient client = HttpClient.newHttpClient();
+                    HttpRequest requestbuilder = HttpRequest.newBuilder()
+                            .uri(URI.create("http://localhost:8080/pointscore/refresh/" + 1))
+                            .PUT(HttpRequest.BodyPublishers.ofString("")).build();
+
+                    try {
+                        HttpResponse<String> response = client.send(requestbuilder, HttpResponse.BodyHandlers.ofString());
+                    } catch (IOException | InterruptedException e) {
+                        System.out.println("The Server does not recieve the pointscores.");
+                    }
+                }
             }
         }
     }

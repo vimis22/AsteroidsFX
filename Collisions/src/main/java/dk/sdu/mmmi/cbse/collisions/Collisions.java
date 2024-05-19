@@ -11,7 +11,7 @@ public class Collisions implements IPostEntityProcessingService{
         for(Entity entity1 : world.getEntities()){
             for(Entity entity2 : world.getEntities()){
                 if(entity1==entity2 || entity1.getColor()==entity2.getColor()){
-                    System.out.println("Not Collided");
+                    //System.out.println("Not Collided");
                     continue;
                 }
                 if(this.collides(entity1,entity2)){
@@ -22,7 +22,6 @@ public class Collisions implements IPostEntityProcessingService{
             }
         }
     }
-
     public Boolean collides(Entity entity1, Entity entity2){
         Boolean collides = false;
         double distance = Math.sqrt(((entity2.getX()-entity1.getX())*(entity2.getX()-entity1.getX()))+
@@ -31,10 +30,5 @@ public class Collisions implements IPostEntityProcessingService{
             collides = true;
         }
         return collides;
-//        double direction_x = (double) entity1.getX() - (double) entity2.getX();
-//        double direction_y = (double) entity1.getY() - (double) entity2.getY();
-//        double distance_of_xy = (double) Math.sqrt(direction_x*direction_x+direction_y*direction_y);
-//        return distance_of_xy < (entity1.getRadius() + entity2.getRadius());
     }
-
 }

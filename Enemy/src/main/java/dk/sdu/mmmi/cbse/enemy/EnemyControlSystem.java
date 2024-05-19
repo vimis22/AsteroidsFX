@@ -17,9 +17,14 @@ public class EnemyControlSystem implements IEntityProcessingService {
     @Override
     public void process(GameData gameData, World world) {
         for (Entity enemy : world.getEntities(Enemy.class)){
-            getBulletSPIs().stream().findFirst().ifPresent(
-                    spi -> { world.addEntity(spi.createBullet(enemy,gameData)); }
-            );
+//            getBulletSPIs().stream().findFirst().ifPresent(
+//                    spi -> { world.addEntity(spi.createBullet(enemy,gameData)); }
+//            );
+            if (Math.random()*1000<1.0){
+                getBulletSPIs().stream().findFirst().ifPresent(
+                        spi -> { world.addEntity(spi.createBullet(enemy,gameData)); }
+                );
+            }
             Random random = new Random();
             //enemy.setRotation(enemy.getRotation() + random.nextDouble(0,360));
             double distance = Math.sqrt(((enemy.getobjectiveX()-enemy.getX())*(enemy.getobjectiveX()-enemy.getX()))+
