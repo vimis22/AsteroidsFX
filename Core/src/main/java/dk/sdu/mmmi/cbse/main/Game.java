@@ -43,6 +43,12 @@ public class Game {
         this.iGamePluginService = iGamePluginService;
     }
 
+    /**
+     * This method loads the display to the game.
+     *
+     * @param window    The window illustrates the display of the window.
+     * @throws Exception    Throws exception, if error occurs.
+     */
     public void start(Stage window) throws Exception {
         pointScore = 0;
         totalScoreDisplay = new Text(10, 20, "Destroyed asteroids: " + pointScore);
@@ -108,6 +114,9 @@ public class Game {
 
     }
 
+    /**
+     * This method loads of the other methods, and loads to the display in the start() method.
+     */
     public void render() {
         new AnimationTimer() {
             private final long then = 0;
@@ -122,6 +131,9 @@ public class Game {
         }.start();
     }
 
+    /**
+     * This method ensures, that entities which implement the respective interfaces get updated upon any change.
+     */
     private void update() {
         // Update
         for (IEntityProcessingService entityProcessorService : getEntityProcessingServices()) {
@@ -132,9 +144,12 @@ public class Game {
         }
     }
 
+    /**
+     * This method ensures the removal and adding of entities to the window display.
+     * This method also increments the score, when hitting an asteroid.
+     * This method sends a HTTP-Request to the server-browser to illustrate the score.
+     */
     private void draw() {
-        //Når et entity dør, så skal den fjernes fra world, polygons og gameWindow.
-        //Her skal du tænke på, hvordan en entity skal fjernes.
         for (Entity entity : world.getEntities()) {
             Polygon polygon = polygons.get(entity);
             //polygon.setFill(entity.getColor());
@@ -158,6 +173,7 @@ public class Game {
 
                     // Update score for microservice
                     //This part has been inspired from: {@link: https://docs.oracle.com/en/java/javase/17/docs//api/java.net.http/java/net/http/HttpRequest.html#newBuilder()}
+                    //This part has also been inspired from Tutorialtpoint.
                     HttpClient client = HttpClient.newHttpClient();
                     HttpRequest requestbuilder = HttpRequest.newBuilder()
                             .uri(URI.create("http://localhost:8080/pointscore/refresh/" + 1))

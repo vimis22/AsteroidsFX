@@ -15,6 +15,12 @@ public class EnemyPlugin implements IGamePluginService {
 
     }
 
+    /**
+     * The start method adds multiple enemies to the world.
+     *
+     * @param gameData  The gameData adds boundaries to the world.
+     * @param world     The world adds the entity to the map.
+     */
     @Override
     public void start(GameData gameData, World world) {
         Random random = new Random();
@@ -25,6 +31,12 @@ public class EnemyPlugin implements IGamePluginService {
         }
     }
 
+    /**
+     * This method defines the shape of enemies.
+     *
+     * @param gameData  The gameData add boundaries to the world.
+     * @return {@code enemyShip} The asteroidsShip are the created asteroids.
+     */
     private Entity createEnemy(GameData gameData){
         Entity enemyShip = new Enemy();
         enemyShip.setRadius(30);
@@ -42,20 +54,15 @@ public class EnemyPlugin implements IGamePluginService {
         return enemyShip;
     }
 
-
-
+    /**
+     * This method removes the enemies, when the game stops.
+     *
+     * @param gameData  The gameData adds boundaries to the world.
+     * @param world     The world adds the entity to the map.
+     */
     @Override
     public void stop(GameData gameData, World world) {
         world.removeEntity(enemy);
     }
 }
 
-        /*0,0,
-        0,5,
-        5,10,
-        10,10,
-        15,5,
-        15,0,
-        10,-5,
-        5,-5,
-        0,0*/

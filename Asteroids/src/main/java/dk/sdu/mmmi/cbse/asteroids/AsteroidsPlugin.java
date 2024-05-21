@@ -16,6 +16,12 @@ public class AsteroidsPlugin implements IGamePluginService {
 
     }
 
+    /**
+     * The start method adds multiple asteroids to the world.
+     *
+     * @param gameData  The gameData adds boundaries to the world.
+     * @param world     The world adds the entity to the map.
+     */
     @Override
     public void start(GameData gameData, World world) {
         Random random = new Random();
@@ -26,6 +32,13 @@ public class AsteroidsPlugin implements IGamePluginService {
         }
     }
 
+    /**
+     * This method defines the shape of asteroids.
+     *
+     * @param gameData  The gameData add boundaries to the world.
+     * @param entity    The entity defines the entity, that is created.
+     * @return {@code asteroidsShip} The asteroidsShip are the created asteroids.
+     */
     public Entity createAsteroids(GameData gameData, Entity entity){
         Entity asteroidsShip = new Asteroids();
         Random random = new Random();
@@ -66,8 +79,14 @@ public class AsteroidsPlugin implements IGamePluginService {
         return asteroidsShip;
     }
 
+    /**
+     * This method removes the asteroids, when the game stops.
+     *
+     * @param gameData  The gameData adds boundaries to the world.
+     * @param world     The world adds the entity to the map.
+     */
     @Override
     public void stop(GameData gameData, World world) {
-
+        world.removeEntity(asteroids);
     }
 }

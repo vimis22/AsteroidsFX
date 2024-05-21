@@ -14,6 +14,12 @@ import java.util.ServiceLoader;
 import static java.util.stream.Collectors.toList;
 
 public class EnemyControlSystem implements IEntityProcessingService {
+    /**
+     * This method processes the movement of multiple enemies inside the map.
+     *
+     * @param gameData  The gameData adds boundaries to the world.
+     * @param world     The world adds the entity to the map.
+     */
     @Override
     public void process(GameData gameData, World world) {
         for (Entity enemy : world.getEntities(Enemy.class)){
@@ -38,14 +44,7 @@ public class EnemyControlSystem implements IEntityProcessingService {
                         radian_angle
                 );
             }
-               /* for (BulletSPI bulletSPI : getBulletSPIs()) {
-                    //Når processen bliver kørt, så bliver bullet skudt når der kommer ændring i enemy.
-                    //Et eksempel på forslag kan være, at når der ikke er ændring, så skal enemy skyde også når der er ændring.
-                    //Men start først med, at finde ud af hvorfor enemy'en skyder når der er ændring i process-metoden.
-                    Entity bullet = bulletSPI.createBullet(enemy, gameData);
-                    world.addEntity(bullet);
-                }*/
-            //changeX and changeY makes the enemy move forward with the help of getRotation, with cos(x) and sin(y) coordinates.
+
             double changeX = Math.cos(Math.toRadians(enemy.getRotation()));
             double changeY = Math.sin(Math.toRadians(enemy.getRotation()));
             enemy.setX(enemy.getX() + changeX);
@@ -64,6 +63,11 @@ public class EnemyControlSystem implements IEntityProcessingService {
             }
         }
     }
+
+    /**
+     * This method ensures, that the BulletSPI is implemented in this case, so the functionality can be provided by this module.
+     * @return {@BulletSPI} The BulletSPI ensures, that the bullet is loaded at the shooter, so that the shooter is able to shoot.
+     */
     private Collection<? extends BulletSPI> getBulletSPIs() {
         return ServiceLoader.load(BulletSPI.class).stream().map(ServiceLoader.Provider::get).collect(toList());
     }

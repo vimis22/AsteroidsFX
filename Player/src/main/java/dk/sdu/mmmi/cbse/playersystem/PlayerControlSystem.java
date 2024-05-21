@@ -15,6 +15,12 @@ import static java.util.stream.Collectors.toList;
 
 public class PlayerControlSystem implements IEntityProcessingService {
 
+    /**
+     * This method processes the movement of multiple enemies inside the map.
+     *
+     * @param gameData  The gameData adds boundaries to the world.
+     * @param world     The world adds the entity to the map.
+     */
     @Override
     public void process(GameData gameData, World world) {
 
@@ -60,6 +66,10 @@ public class PlayerControlSystem implements IEntityProcessingService {
         }
     }
 
+    /**
+     * This method ensures, that the BulletSPI is implemented in this case, so the functionality can be provided by this module.
+     * @return {@BulletSPI} The BulletSPI ensures, that the bullet is loaded at the shooter, so that the shooter is able to shoot.
+     */
     private Collection<? extends BulletSPI> getBulletSPIs() {
         return ServiceLoader.load(BulletSPI.class).stream().map(ServiceLoader.Provider::get).collect(toList());
     }

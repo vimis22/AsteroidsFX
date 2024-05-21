@@ -15,13 +15,24 @@ public class PlayerPlugin implements IGamePluginService {
     public PlayerPlugin() {
     }
 
+    /**
+     * The start method adds the player to the world.
+     *
+     * @param gameData  The gameData adds boundaries to the world.
+     * @param world     The world adds the entity to the map.
+     */
     @Override
     public void start(GameData gameData, World world) {
-        // Add entities to the world
         player = createPlayerShip(gameData);
         world.addEntity(player);
     }
 
+    /**
+     * This method defines the shape of the player.
+     *
+     * @param gameData  The gameData add boundaries to the world.
+     * @return {@code playerShip} The asteroidsShip are the created asteroids.
+     */
     private Entity createPlayerShip(GameData gameData) {
         Entity playerShip = new Player();
         playerShip.setRadius(20);
@@ -37,9 +48,14 @@ public class PlayerPlugin implements IGamePluginService {
         return playerShip;
     }
 
+    /**
+     * This method removes the player, when the game stops.
+     *
+     * @param gameData  The gameData adds boundaries to the world.
+     * @param world     The world adds the entity to the map.
+     */
     @Override
     public void stop(GameData gameData, World world) {
-        // Remove entities
         world.removeEntity(player);
     }
 }

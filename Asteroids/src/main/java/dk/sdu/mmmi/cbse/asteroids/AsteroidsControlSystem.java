@@ -9,6 +9,13 @@ import dk.sdu.mmmi.cbse.commonasteroids.Asteroids;
 import dk.sdu.mmmi.cbse.commonasteroids.SplitAsteroids;
 public class AsteroidsControlSystem implements IEntityProcessingService, IPostEntityProcessingService {
     public SplitAsteroids asteroidsSplitter = new AsteroidsSplitImpl();
+
+    /**
+     * This method processes the movement of the asteroids inside the map.
+     *
+     * @param gameData  The gameData adds boundaries to the world.
+     * @param world     The world adds the entity to the map.
+     */
     @Override
     public void process(GameData gameData, World world) {
         for(Entity asteroids: world.getEntities(Asteroids.class)){

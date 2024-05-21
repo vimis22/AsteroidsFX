@@ -10,11 +10,23 @@ public class BulletPlugin implements IGamePluginService {
 
     private Entity bullet;
 
+    /**
+     * The start method adds bullets to the world.
+     *
+     * @param gameData  The gameData adds boundaries to the world.
+     * @param world     The world adds the entity to the map.
+     */
     @Override
     public void start(GameData gameData, World world) {
 
     }
 
+    /**
+     * This method removes the bullets, when the game stops.
+     *
+     * @param gameData  The gameData adds boundaries to the world.
+     * @param world     The world adds the entity to the map.
+     */
     @Override
     public void stop(GameData gameData, World world) {
         for (Entity e : world.getEntities()) {

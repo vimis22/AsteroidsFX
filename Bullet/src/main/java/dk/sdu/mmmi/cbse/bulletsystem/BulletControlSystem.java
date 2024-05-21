@@ -10,6 +10,12 @@ import javafx.scene.paint.Color;
 
 public class BulletControlSystem implements IEntityProcessingService, BulletSPI {
 
+    /**
+     * This method processes the movement of the bullets inside the map.
+     *
+     * @param gameData  The gameData adds boundaries to the world.
+     * @param world     The world adds the entity to the map.
+     */
     @Override
     public void process(GameData gameData, World world) {
 
@@ -34,6 +40,13 @@ public class BulletControlSystem implements IEntityProcessingService, BulletSPI 
         }
     }
 
+    /**
+     *This method creates bullets, with a shape.
+     *
+     * @param shooter   The shooter refereres to the entity, that shoots the bullets.
+     * @param gameData  The gameData adds boundaries to the world.
+     * @return {@code bullet}   Returns a bullet, upon shooting
+     */
     @Override
     public Entity createBullet(Entity shooter, GameData gameData) {
         Entity bullet = new Bullet();
