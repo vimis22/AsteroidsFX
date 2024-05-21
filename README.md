@@ -12,7 +12,7 @@
 But the user can also execute based on the task, from the respective branches.</p>
 
 <h2>Purpose of Project</h2>
-This project has been apart of an 5 ETCS Course in the University of Southern Denmark.
+This project has been a part of an 5 ETCS Course in the University of Southern Denmark.
 The primary objective of this project, is to illustrate how a Game can be made based on Componentsbased System.
 
 <h2>Instruction for Execution</h2>
