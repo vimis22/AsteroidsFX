@@ -173,7 +173,7 @@ public class Game {
 
                     // Update score for microservice
                     //This part has been inspired from: {@link: https://docs.oracle.com/en/java/javase/17/docs//api/java.net.http/java/net/http/HttpRequest.html#newBuilder()}
-                    //This part has also been inspired from Tutorialtpoint.
+                    //This part has also been inspired from Tutorialtpoint, and collaboration with classmates.
                     HttpClient client = HttpClient.newHttpClient();
                     HttpRequest requestbuilder = HttpRequest.newBuilder()
                             .uri(URI.create("http://localhost:8080/pointscore/refresh/" + 1))

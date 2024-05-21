@@ -3,6 +3,8 @@ package dk.sdu.mmmi.cbse.scoresystem;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.*;
+//Some elements have been inspired from: {@link: https://docs.oracle.com/en/java/javase/17/docs//api/java.net.http/java/net/http/HttpRequest.html#newBuilder()}
+//This part has also been inspired from Tutorialtpoint Videoes, and collaboration with classmates.
 
 //RequestMapping sends a request to the localhost url port-number.
 @SpringBootApplication
